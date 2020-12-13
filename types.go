@@ -249,3 +249,14 @@ func (t *ResultType) GetDeviceList() []DeviceType {
 	}
 	return _l
 }
+
+type UDPMessage struct {
+	IP         string `json:"ip"`
+	GwID       string `json:"gwId"`
+	Active     int    `json:"active"`
+	Ability    int    `json:"ability"`
+	Mode       int    `json:"mode"`
+	Encrypt    bool   `json:"encrypt"`
+	ProductKey string `json:"productKey"`
+	Version    string `json:"version"`
+}
