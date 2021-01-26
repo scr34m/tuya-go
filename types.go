@@ -203,40 +203,27 @@ type DeviceModuleMapType struct {
 }
 
 type DeviceType struct {
-	Virtual bool `json:"virtual"`
-	// "dpName": {"11": "Light"},
-	Lon        string `json:"lon"`
-	UUID       string `json:"uuid"`
-	Mac        string `json:"mac"`
-	IconURL    string `json:"iconUrl"`
-	RuntimeEnv string `json:"runtimeEnv"`
-	Lat        string `json:"lat"`
-	DevID      string `json:"devId"`
-	DpMaxTime  int    `json:"dpMaxTime"`
-	ProductID  string `json:"productId"`
-	/*
-	   "dps": {
-	       "11": false,
-	       "110": "1",
-	       "1": true,
-	       "12": 0,
-	       "111": 255,
-	       "13": "0",
-	       "14": 0,
-	       "103": "small",
-	       "108": "",
-	       "109": "white"
-	   },
-	*/
-	IP           string              `json:"ip"`
-	ActiveTime   int                 `json:"activeTime"`
-	CategoryCode string              `json:"categoryCode"`
-	ModuleMap    DeviceModuleMapType `json:"moduleMap"`
-	SevAttribute string              `json:"devAttribute"`
-	Name         string              `json:"name"`
-	TimezoneID   string              `json:"timezoneId"`
-	Category     string              `json:"category"`
-	LocalKey     string              `json:"localKey"`
+	Virtual      bool                   `json:"virtual"`
+	DpName       map[string]interface{} `json:"dpName"`
+	Lon          string                 `json:"lon"`
+	UUID         string                 `json:"uuid"`
+	Mac          string                 `json:"mac"`
+	IconURL      string                 `json:"iconUrl"`
+	RuntimeEnv   string                 `json:"runtimeEnv"`
+	Lat          string                 `json:"lat"`
+	DevID        string                 `json:"devId"`
+	DpMaxTime    int                    `json:"dpMaxTime"`
+	ProductID    string                 `json:"productId"`
+	Dps          map[string]interface{} `json:"dps"`
+	IP           string                 `json:"ip"`
+	ActiveTime   int                    `json:"activeTime"`
+	CategoryCode string                 `json:"categoryCode"`
+	ModuleMap    DeviceModuleMapType    `json:"moduleMap"`
+	SevAttribute string                 `json:"devAttribute"`
+	Name         string                 `json:"name"`
+	TimezoneID   string                 `json:"timezoneId"`
+	Category     string                 `json:"category"`
+	LocalKey     string                 `json:"localKey"`
 }
 
 func (t *ResultType) GetDeviceList() []DeviceType {
