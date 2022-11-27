@@ -44,7 +44,7 @@ func (tuya *Tuya) GroupIdSet(s string) {
 	tuya.groupId = s
 }
 
-func (tuya *Tuya) Login(email string, password string, countyCode int) bool {
+func (tuya *Tuya) Login(email string, password string, countyCode int) (string) {
 	tokenData := struct {
 		CountryCode int    `json:"countryCode"`
 		Email       string `json:"email"`
@@ -56,7 +56,7 @@ func (tuya *Tuya) Login(email string, password string, countyCode int) bool {
 	res := tuya.Call("tuya.m.user.email.token.create", "1.0", tokenData, false)
 	if !res.Success {
 		fmt.Println(res.ErrorMessage)
-		return false
+		return ""
 	}
 
 	rsa := res.GetRsaType()
@@ -88,16 +88,14 @@ func (tuya *Tuya) Login(email string, password string, countyCode int) bool {
 	res = tuya.Call("tuya.m.user.email.password.login", "1.0", passwordData, false)
 	if !res.Success {
 		fmt.Println(res.ErrorMessage)
-		return false
+		return ""
 	}
 
 	login := res.GetLoginType()
 
 	tuya.sessionId = login.SID
 
-	fmt.Printf("SessionID: %s\n", tuya.sessionId)
-
-	return true
+	return tuya.sessionId
 }
 
 func (tuya *Tuya) Call(action, version string, postData interface{}, signed bool) ResultType {

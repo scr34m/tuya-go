@@ -33,7 +33,10 @@ func main() {
 	//t.Call("tuya.m.country.list", "2.0", nil, false)
 
 	if len(os.Args) != 2 {
-		t.Login(config.Email, config.Password, 36)
+		session := t.Login(config.Email, config.Password, 36)
+		if (session != "") {
+			fmt.Printf("Restart with argument: %s\n", session)
+		}
 		return
 	}
 
